@@ -60,6 +60,8 @@ module.exports = function (grunt) {
         var lambda = require(path.resolve(options.file_name));
         var event = JSON.parse(fs.readFileSync(path.resolve(options.event), "utf8"));
         lambda[options.handler](event, context);
+        
+        delete require.cache[require.resolve(path.resolve(options.file_name))];
 
     });
 
